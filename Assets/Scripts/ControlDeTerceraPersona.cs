@@ -11,6 +11,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     [SerializeField] SwitchCamera SwitchCamera;
     private AudioSource audiosource;
 
+
     private Animator anim;
 
     public float speed = 2.6f;
@@ -33,6 +34,11 @@ public class ControlDeTerceraPersona : MonoBehaviour
     public bool Traslado = false;
     public bool CameraAim = false;
     public bool fixCombo3 = false;
+
+    public bool warrior = false;
+    public bool Archer = false;
+
+    
 
 
     // Start is called before the first frame update
@@ -172,7 +178,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     void stances()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+        {   
             if (swordstance == true)
             {
                 swordstance = false;
@@ -278,6 +284,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
             }
         }
     }
+
 
     private void ataqueoff()
     {
