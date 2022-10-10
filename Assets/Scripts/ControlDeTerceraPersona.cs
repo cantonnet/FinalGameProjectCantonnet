@@ -9,6 +9,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
 {
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] SwitchCamera SwitchCamera;
+    //[SerializeField] Disparar Disparar;
     private AudioSource audiosource;
 
 
@@ -37,9 +38,24 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     public bool warrior = false;
     public bool Archer = false;
-
     
+    public GameObject Bala;
+    [SerializeField] public Transform Salidabala;
 
+    public GameObject PowerMagic;
+    [SerializeField] public Transform SalidaPowerMagic;
+
+    public static event Action OnPowerInvoke;
+    
+    private void DisparoFlecha()
+    {
+        Instantiate(Bala, Salidabala.position, transform.rotation);
+    }
+
+    private void DisparoFireball()
+    {
+        Instantiate(PowerMagic, SalidaPowerMagic.position, transform.rotation);
+    }
 
     // Start is called before the first frame update
     void Start()
