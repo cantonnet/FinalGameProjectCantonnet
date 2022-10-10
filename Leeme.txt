@@ -1,0 +1,5 @@
+Movimiento AWSD
+Aim boton izq mouse
+Atacar Boton der mouse
+seleccion de armas con 1,2,3
+
