@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3829525803515314755}
   m_Layer: 0
   m_Name: SM_FlechaEnemiga
-  m_TagString: Untagged
+  m_TagString: BalaEnemiga
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149964}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.17769921
   m_Height: 0.35539842

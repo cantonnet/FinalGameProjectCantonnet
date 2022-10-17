@@ -9653,7 +9653,7 @@ GameObject:
   - component: {fileID: 3671268592910735591}
   m_Layer: 0
   m_Name: ArcaneProjectileNormal
-  m_TagString: Untagged
+  m_TagString: BalaEnemiga
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

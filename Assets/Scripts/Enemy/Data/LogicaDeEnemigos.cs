@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Random = System.Random;
 
 public class LogicaDeEnemigos : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class LogicaDeEnemigos : MonoBehaviour
     public bool bowstance = false;
     public bool magestance = false;
     public bool isHit = false;
+    public bool Defeat = false;
+
+    public float vida = 100f;
 
     [SerializeField] private GameObject Sword;
     [SerializeField] private GameObject Bow;
@@ -42,13 +47,16 @@ public class LogicaDeEnemigos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        idle();
         animator.SetFloat("speed", speed);
         swicher();
+        Muerte();
         animator.SetBool("guerrero", swordstance);
         animator.SetBool("mago", magestance);
         animator.SetBool("arquero", bowstance);
         animator.SetBool("PuedeAtacar", isAtaking);
         animator.SetBool("HitTrue", isHit);
+        animator.SetBool("Defeat", Defeat);
     }
 
     public void swicher()
@@ -127,6 +135,7 @@ public class LogicaDeEnemigos : MonoBehaviour
         {   
             isHit = true;
             Debug.Log("Danio");
+            vida = vida - 20;
         }
     }
 
@@ -181,6 +190,7 @@ public class LogicaDeEnemigos : MonoBehaviour
             speed = 5f;
            }
         }
+        VerJugador();
         }
         //----------------------Arquero mago--------------------------
         if ((EnemyType == enemytype.Arquero) || (EnemyType == enemytype.Mago))
@@ -211,6 +221,36 @@ public class LogicaDeEnemigos : MonoBehaviour
             speed = 3f;
            }
         }
+        }
+
+    }
+    private void idle()
+    {
+        Vector3 direction = (playerTransform.position - transform.position);
+        if ((direction.magnitude < 20f) && (EnemyType == enemytype.Peon))
+        {
+            VerJugador();
+
+        }
+        if ((direction.magnitude < 15f) && (EnemyType == enemytype.Peon))
+        {
+            Random random = new Random();
+            VerJugador();
+            Type type = typeof(enemytype);
+            Array values = type.GetEnumValues();
+            int index = random.Next(values.Length);
+
+            EnemyType = (enemytype)values.GetValue(index);
+
+        }
+    }
+
+    private void Muerte()
+    {
+        if (vida <= 0)
+        {
+            Defeat = true;
+            speed = 0f;
         }
     }
 }

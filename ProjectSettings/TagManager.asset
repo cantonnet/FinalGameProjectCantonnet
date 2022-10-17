@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Criatura
   - Bala
+  - BalaEnemiga
   layers:
   - Default
   - TransparentFX

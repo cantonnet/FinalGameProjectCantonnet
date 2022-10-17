@@ -2706,6 +2706,8 @@ MonoBehaviour:
   bowstance: 0
   magestance: 0
   isHit: 0
+  Defeat: 0
+  vida: 100
   Sword: {fileID: 0}
   Bow: {fileID: 0}
   MagicFire: {fileID: 0}
@@ -5141,7 +5143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 173842, guid: 73a6423dc6531fb44834c586381f7562, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 173842, guid: 73a6423dc6531fb44834c586381f7562, type: 3}
+      propertyPath: m_TagString
+      value: BalaEnemiga
       objectReference: {fileID: 0}
     - target: {fileID: 423478, guid: 73a6423dc6531fb44834c586381f7562, type: 3}
       propertyPath: m_RootOrder
@@ -5195,3 +5201,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7892140467455711695}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7892140467455557341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 173842, guid: 73a6423dc6531fb44834c586381f7562,
+    type: 3}
+  m_PrefabInstance: {fileID: 7892140467455711695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3272070276683457783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892140467455557341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.029933155, y: 0.7482891, z: 0.0903881}
+  m_Center: {x: -0.006829586, y: 0.5123119, z: -0.014177508}
