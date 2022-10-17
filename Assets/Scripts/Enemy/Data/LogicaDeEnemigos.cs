@@ -9,6 +9,7 @@ public class LogicaDeEnemigos : MonoBehaviour
     enum enemytype { Peon, Guerrero, Mago, Arquero};
     [SerializeField] enemytype EnemyType;
     [SerializeField] Transform playerTransform;
+    [SerializeField] SpawnPotion SpawnPotion;
     public Animator animator;
     public float speed = 0f;
 
@@ -22,6 +23,8 @@ public class LogicaDeEnemigos : MonoBehaviour
     public bool magestance = false;
     public bool isHit = false;
     public bool Defeat = false;
+    public bool spawnitem = false;
+    public float eliminaral = 5;
 
     public float vida = 100f;
 
@@ -251,6 +254,17 @@ public class LogicaDeEnemigos : MonoBehaviour
         {
             Defeat = true;
             speed = 0f;
+            if (spawnitem == false)
+            {
+                SpawnPotion.spawnpotion();
+                spawnitem = true;
+            }
+            float time = Time.deltaTime;
+        if (time >= eliminaral)
+        {
+            Destroy(gameObject);
+            time = 0f;
+        }
         }
     }
 }
