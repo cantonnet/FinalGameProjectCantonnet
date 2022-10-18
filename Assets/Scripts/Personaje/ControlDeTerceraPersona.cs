@@ -71,6 +71,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
             Instantiate(PowerMagic, SalidaPowerMagic.position, transform.rotation);
             mana = mana - 15;
             Debug.Log("Mana = " + mana);
+            HudManager.SetMPBar(mana);
         }
     }
 
@@ -88,6 +89,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fixhpmp();
         trasladando();
         ataque();
         stances();
@@ -216,6 +218,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     {
         mana = mana - 20f;
         Debug.Log("Mana = " + mana);
+        HudManager.SetMPBar(mana);
     }
 
     void stances()
@@ -431,17 +434,21 @@ public class ControlDeTerceraPersona : MonoBehaviour
             {
                 vida = vida - 5f;
                 Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
             }
             if ((isaiming == true) && (magestance == true))
             {
                 vida = vida - 1f;
                 mana = mana - 10f;
                 Debug.Log("vida = " + vida);
+                HudManager.SetMPBar(mana);
+                HudManager.SetHPBar(vida);
             }
             else
             {
                 vida = vida - 15f;
                 Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
             }
         }
 
@@ -449,16 +456,43 @@ public class ControlDeTerceraPersona : MonoBehaviour
         { 
             mana = mana + 15f;
             Debug.Log("Mana Actual = " + mana);
+            HudManager.SetMPBar(mana);
         }
         if (other.gameObject.CompareTag("HealtPotion"))
         { 
             vida = vida + 20f;
             Debug.Log("vida Actual = " + vida);
+            HudManager.SetHPBar(vida);
+            
         }
         if (other.gameObject.CompareTag("ArrowPotion"))
         { 
             municion = municion + 10;
             Debug.Log("Municion Actual = " + municion);
+        }
+    }
+
+    void fixhpmp()
+    {
+        if (vida >= 101f)
+        {
+            vida = 100f;
+            HudManager.SetHPBar(vida);
+        }
+        if (vida <= -1f)
+        {
+            vida = 0f;
+            HudManager.SetHPBar(vida);
+        }
+        if (mana >= 101f)
+        {
+            mana = 100f;
+            HudManager.SetMPBar(mana);
+        }
+        if (mana <= -1f)
+        {
+            mana = 0f;
+            HudManager.SetMPBar(mana);
         }
     }
 }

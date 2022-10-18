@@ -55,12 +55,12 @@ public class HudManager : MonoBehaviour
         }
     }
 
-    public static void SetHPBar (int newValue)
+    public static void SetHPBar (float newValue)
     {
         instance.hpbar.value = newValue;
     }
 
-    public static void SetMPBar (int newValue)
+    public static void SetMPBar (float newValue)
     {
         instance.mpbar.value = newValue;
     }
