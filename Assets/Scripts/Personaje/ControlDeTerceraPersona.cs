@@ -51,8 +51,6 @@ public class ControlDeTerceraPersona : MonoBehaviour
     public GameObject PowerMagic;
     [SerializeField] public Transform SalidaPowerMagic;
 
-    public static event Action OnPowerInvoke;
-
       public void SetHP (float newValue)
     {
         vida = newValue;

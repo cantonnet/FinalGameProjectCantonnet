@@ -9,11 +9,8 @@ public class LogicaFireball : MonoBehaviour
     float y;
     float time;
     public float eliminaral = 2.5f;
-    public static event Action OnHit;
     public GameObject Efecto;
     [SerializeField] public Transform SalidaEfecto;
-
-    public static event Action OnPowerInvoke;
     // Start is called before the first frame update
     void Start()
     {
