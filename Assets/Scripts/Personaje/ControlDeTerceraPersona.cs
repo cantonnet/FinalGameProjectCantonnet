@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(AudioSource))]
 public class ControlDeTerceraPersona : MonoBehaviour
 {
+    [SerializeField] HudManager HudManager;
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] SwitchCamera SwitchCamera;
     //[SerializeField] Disparar Disparar;
@@ -14,6 +15,8 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
 
     private Animator anim;
+    
+    public static event Action OnDead;
 
     public float vida = 100f;
     public float mana = 100f;
@@ -50,21 +53,6 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     public GameObject PowerMagic;
     [SerializeField] public Transform SalidaPowerMagic;
-
-      public void SetHP (float newValue)
-    {
-        vida = newValue;
-    }
-
-      public void SetMP (float newValue)
-    {
-        mana = newValue;
-    }
-
-      public void SetMunition (int newValue)
-    {
-        municion = newValue;
-    }
     
     private void DisparoFlecha()
     {
@@ -422,13 +410,14 @@ public class ControlDeTerceraPersona : MonoBehaviour
             DamageON = false;
     }
 
-    private void Muerte()
+    public void Muerte()
     {
         if (vida <= 0)
         {
             Defeat = true;
             lateralspeed = 0f;
             speed = 0f;
+            ControlDeTerceraPersona.OnDead.Invoke();
         }
     }
 
