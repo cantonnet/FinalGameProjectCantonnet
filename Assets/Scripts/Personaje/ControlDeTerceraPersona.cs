@@ -17,6 +17,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     public float vida = 100f;
     public float mana = 100f;
+    public int municion = 20;
     public bool Defeat = false;
 
     public float speed = 2.6f;
@@ -51,15 +52,40 @@ public class ControlDeTerceraPersona : MonoBehaviour
     [SerializeField] public Transform SalidaPowerMagic;
 
     public static event Action OnPowerInvoke;
+
+      public void SetHP (float newValue)
+    {
+        vida = newValue;
+    }
+
+      public void SetMP (float newValue)
+    {
+        mana = newValue;
+    }
+
+      public void SetMunition (int newValue)
+    {
+        municion = newValue;
+    }
     
     private void DisparoFlecha()
     {
-        Instantiate(Bala, Salidabala.position, transform.rotation);
+        if(municion >= 1)
+        {
+           Instantiate(Bala, Salidabala.position, transform.rotation);
+        municion = municion - 1; 
+        Debug.Log("Municion = " + municion);
+        }
     }
 
     private void DisparoFireball()
     {
-        Instantiate(PowerMagic, SalidaPowerMagic.position, transform.rotation);
+        if (mana >= 15)
+        {
+            Instantiate(PowerMagic, SalidaPowerMagic.position, transform.rotation);
+            mana = mana - 15;
+            Debug.Log("Mana = " + mana);
+        }
     }
 
     // Start is called before the first frame update
@@ -109,6 +135,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
         anim.SetBool("OnAtaque", OnAtaque);
         anim.SetBool("Defeat", Defeat);
         anim.SetBool("DamageOn", DamageON);
+        anim.SetFloat("Municion", municion);
 
         bool isAtaking = Input.GetMouseButtonDown(0);
          if (isAtaking) {anim.SetBool("Atacar", true);}
@@ -197,6 +224,12 @@ public class ControlDeTerceraPersona : MonoBehaviour
             lateralspeed = 2.5f;
             isaiming = false;
         }
+    }
+
+    void drenarmana()
+    {
+        mana = mana - 20f;
+        Debug.Log("Mana = " + mana);
     }
 
     void stances()
@@ -423,6 +456,22 @@ public class ControlDeTerceraPersona : MonoBehaviour
                 vida = vida - 15f;
                 Debug.Log("vida = " + vida);
             }
+        }
+
+        if (other.gameObject.CompareTag("ManaPotion"))
+        { 
+            mana = mana + 15f;
+            Debug.Log("Mana Actual = " + mana);
+        }
+        if (other.gameObject.CompareTag("HealtPotion"))
+        { 
+            vida = vida + 20f;
+            Debug.Log("vida Actual = " + vida);
+        }
+        if (other.gameObject.CompareTag("ArrowPotion"))
+        { 
+            municion = municion + 10;
+            Debug.Log("Municion Actual = " + municion);
         }
     }
 }

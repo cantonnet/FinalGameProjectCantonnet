@@ -258,13 +258,10 @@ public class LogicaDeEnemigos : MonoBehaviour
             {
                 SpawnPotion.spawnpotion();
                 spawnitem = true;
+                Destroy(GetComponent<BoxCollider>());
+                Destroy(gameObject, 5);
             }
             float time = Time.deltaTime;
-        if (time >= eliminaral)
-        {
-            Destroy(gameObject);
-            time = 0f;
-        }
         }
     }
 }
