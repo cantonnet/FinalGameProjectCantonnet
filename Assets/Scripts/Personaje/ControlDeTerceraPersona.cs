@@ -443,21 +443,41 @@ public class ControlDeTerceraPersona : MonoBehaviour
             Debug.Log("DanioDeBalaEnemiga");
             if ((isaiming == true) && (swordstance == true))
             {
-                vida = vida - 5f;
+                vida = vida - 2.5f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetHPBar(vida);
             }
             if ((isaiming == true) && (magestance == true))
             {
-                vida = vida - 1f;
-                mana = mana - 10f;
+                vida = vida - 0.2f;
+                mana = mana - 15f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetMPBar(mana);
                 HudManager.SetHPBar(vida);
             }
-            else
+            if((isaiming == false))
             {
-                vida = vida - 15f;
+                vida = vida - 5f;
+                Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
+            }
+            if((isaiming == false) && ((bowstance == true)||(swordstance == true)||(magestance == true)))
+            {
+                vida = vida - 5f;
+                Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
+            }
+            
+            if((isaiming == true) && ((bowstance == true)||(swordstance == false)||(magestance == false)))
+            {
+                vida = vida - 5f;
+                Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
+            }
+            
+            if((isaiming == true) && ((bowstance == false)||(swordstance == false)||(magestance == false)))
+            {
+                vida = vida - 5f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetHPBar(vida);
             }
