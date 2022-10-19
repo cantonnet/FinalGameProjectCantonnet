@@ -493,7 +493,14 @@ public class ControlDeTerceraPersona : MonoBehaviour
                 HudManager.SetHPBar(vida);
             }
         }
-
+        if (other.gameObject.CompareTag("Trampa"))
+            {   
+                DamageOn();
+                vida = 0;
+                Debug.Log("vida = " + vida);
+                HudManager.SetHPBar(vida);
+            
+            }
         if (other.gameObject.CompareTag("ManaPotion"))
         { 
             mana = mana + 15f;
