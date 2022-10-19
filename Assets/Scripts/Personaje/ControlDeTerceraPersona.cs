@@ -44,6 +44,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     public bool CameraAim = false;
     public bool fixCombo3 = false;
     public bool DamageON = false;
+    int indexstance = 0;
 
     public bool warrior = false;
     public bool Archer = false;
@@ -61,6 +62,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
            Instantiate(Bala, Salidabala.position, transform.rotation);
         municion = municion - 1; 
         Debug.Log("Municion = " + municion);
+        HudManager.Setammo(municion);
         }
     }
 
@@ -95,6 +97,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
         stances();
         aiming();
         Muerte();
+        HudManager.SetStanceImage(indexstance);
         if(isaiming == false)
         {
             x = Input.GetAxis("Horizontal");
@@ -227,6 +230,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
         {   
             if (swordstance == true)
             {
+                indexstance = 0;
                 swordstance = false;
                 bowstance = false;
                 magestance = false;
@@ -234,6 +238,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
             }
             else
             {
+                indexstance = 1;
                 swordstance = true;
                 bowstance = false;
                 magestance = false;
@@ -244,12 +249,14 @@ public class ControlDeTerceraPersona : MonoBehaviour
         {
             if (bowstance == true)
             {
+                indexstance = 0;
                 swordstance = false;
                 bowstance = false;
                 magestance = false;
                 SwitchCamera.Setbowstancevalue(bowstance);
             }
             else{
+                indexstance = 2;
             swordstance = false;
             bowstance = true;
             magestance = false;
@@ -259,13 +266,16 @@ public class ControlDeTerceraPersona : MonoBehaviour
         {
             if (magestance == true)
             {
+                indexstance = 0;
                 swordstance = false;
                 bowstance = false;
                 magestance = false;
                 SwitchCamera.Setbowstancevalue(bowstance);
             }
             else
-            {swordstance = false;
+            {
+                indexstance = 3;
+                swordstance = false;
             bowstance = false;
             magestance = true;
             SwitchCamera.Setbowstancevalue(bowstance);}

@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
+
 
 public class HudManager : MonoBehaviour
 
 {
     private static HudManager instance;
     public static HudManager Instance {get => instance; }
-    [SerializeField] private Text selectedtext;
+    [SerializeField] private TMP_Text selectedtext;
+    [SerializeField] private TMP_Text ammotext;
     [SerializeField] private GameObject stancemode;
     public Material[] imagenes;
     [SerializeField] private Slider hpbar;
     [SerializeField] private Slider mpbar;
+
+    [SerializeField] private GameObject Sword;
+    [SerializeField] private GameObject Bow;
+    [SerializeField] private GameObject Magic;
 
     private void Awake() {
         if (instance == null)
@@ -31,7 +39,7 @@ public class HudManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance.hpbar.value = 50;
+
     }
 
     public void SetSelectedText(string newText)
@@ -39,19 +47,38 @@ public class HudManager : MonoBehaviour
         selectedtext.text = newText;
     }
 
-    public void EnableWeapon(int childIndex)
+    public void SetStanceImage(int Index)
     {
-        if (childIndex == 0)
+        if (Index == 0)
         {
-            Instance.stancemode.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.blue;
+            Sword.gameObject.SetActive (false);
+            Bow.gameObject.SetActive (false);
+            Magic.gameObject.SetActive (false);
+            ammotext.text = "0";
+            selectedtext.text = "Stances";
         }
-        if (childIndex == 1)
+        if (Index == 1)
         {
-            Instance.stancemode.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+            Sword.gameObject.SetActive (true);
+            Bow.gameObject.SetActive (false);
+            Magic.gameObject.SetActive (false);
+            ammotext.text = "1";
+            selectedtext.text = "Warrior";
         }
-        if (childIndex == 2)
+        if (Index == 2)
         {
-            Instance.stancemode.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red;
+            Sword.gameObject.SetActive (false);
+            Bow.gameObject.SetActive (true);
+            Magic.gameObject.SetActive (false);
+            selectedtext.text = "Archer";
+        }
+        if (Index == 3)
+        {
+            Sword.gameObject.SetActive (false);
+            Bow.gameObject.SetActive (false);
+            Magic.gameObject.SetActive (true);
+            ammotext.text = "++";
+            selectedtext.text = "Magic";
         }
     }
 
@@ -63,6 +90,11 @@ public class HudManager : MonoBehaviour
     public static void SetMPBar (float newValue)
     {
         instance.mpbar.value = newValue;
+    }
+
+    public static void Setammo (int newValue)
+    {
+        instance.ammotext.text = newValue.ToString();
     }
 
     private void GameOver()
