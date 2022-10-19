@@ -260,6 +260,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
             swordstance = false;
             bowstance = true;
             magestance = false;
+            HudManager.Setammo(municion);
             SwitchCamera.Setbowstancevalue(bowstance);}
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))

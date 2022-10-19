@@ -55,7 +55,7 @@ public class HudManager : MonoBehaviour
             Bow.gameObject.SetActive (false);
             Magic.gameObject.SetActive (false);
             ammotext.text = "0";
-            selectedtext.text = "Stances";
+            selectedtext.text = "Estados";
         }
         if (Index == 1)
         {
@@ -63,14 +63,14 @@ public class HudManager : MonoBehaviour
             Bow.gameObject.SetActive (false);
             Magic.gameObject.SetActive (false);
             ammotext.text = "1";
-            selectedtext.text = "Warrior";
+            selectedtext.text = "Guerrero";
         }
         if (Index == 2)
         {
             Sword.gameObject.SetActive (false);
             Bow.gameObject.SetActive (true);
             Magic.gameObject.SetActive (false);
-            selectedtext.text = "Archer";
+            selectedtext.text = "Arquero";
         }
         if (Index == 3)
         {
@@ -78,7 +78,7 @@ public class HudManager : MonoBehaviour
             Bow.gameObject.SetActive (false);
             Magic.gameObject.SetActive (true);
             ammotext.text = "++";
-            selectedtext.text = "Magic";
+            selectedtext.text = "Mago";
         }
     }
 
