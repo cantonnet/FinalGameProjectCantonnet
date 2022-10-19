@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuPausa : MonoBehaviour
 {
+    private static MenuPausa instance;
+    public static MenuPausa Instance {get => instance; }
     public bool PauseActive = false;
     [SerializeField] private GameObject PausaPanel;
     [SerializeField] private GameObject HudPanel;
@@ -17,6 +19,10 @@ public class MenuPausa : MonoBehaviour
     void Start()
     {
         PausaPanel.SetActive(false);
+    }
+
+    private void Awake() {
+        ControlDeTerceraPersona.OnDead += GameOverAcivePausa;
     }
 
     // Update is called once per frame
@@ -62,4 +68,23 @@ public class MenuPausa : MonoBehaviour
         SceneManager.LoadScene("Menu");
         Cursor.lockState = CursorLockMode.None;
     }
+
+    private void GameOverAcivePausa()
+    {
+        if (PauseActive == false)
+            {
+                PausaPanel.SetActive(true);
+                HudPanel.SetActive(false);
+                Debug.Log("Active Pause");
+                PauseActive = true;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Debug.Log("Respuesta desde Script Control3raP para Pausa");
+            }
+            else
+            {
+                Reanudar();
+            }
+    }
+
 }

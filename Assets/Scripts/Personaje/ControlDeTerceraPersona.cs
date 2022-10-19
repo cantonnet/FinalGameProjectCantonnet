@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class ControlDeTerceraPersona : MonoBehaviour
 {
     [SerializeField] HudManager HudManager;
+    [SerializeField] MenuPausa MenuPausa;
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] SwitchCamera SwitchCamera;
     //[SerializeField] Disparar Disparar;
@@ -45,6 +46,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     public bool fixCombo3 = false;
     public bool DamageON = false;
     int indexstance = 0;
+    bool eventomoririnvocado = false;
 
     public bool warrior = false;
     public bool Archer = false;
@@ -431,8 +433,17 @@ public class ControlDeTerceraPersona : MonoBehaviour
             Defeat = true;
             lateralspeed = 0f;
             speed = 0f;
-            ControlDeTerceraPersona.OnDead.Invoke();
+            if (eventomoririnvocado == true)
+            {
+                    ControlDeTerceraPersona.OnDead.Invoke();
+                    eventomoririnvocado = false;
+            }
         }
+    }
+
+    public void AnimationMorir()
+    {
+        eventomoririnvocado = true;
     }
 
     private void OnTriggerEnter(Collider other)
