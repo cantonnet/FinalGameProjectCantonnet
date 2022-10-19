@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
+
+    [SerializeField] private GameObject Menuinicial;
+    [SerializeField] private GameObject MenuInferior;
+    [SerializeField] private GameObject Creditos;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +19,30 @@ public class MenuUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LoadCreditos()
+    {
+        Creditos.SetActive(true);
+    }
+
+    public void MenuPrincipal()
+    {
+        Menuinicial.SetActive(true);
+        MenuInferior.SetActive(false);
+        Creditos.SetActive(false);
+    }
+
+    public void Menuinferior()
+    {
+        Menuinicial.SetActive(false);
+        MenuInferior.SetActive(true);
+        Creditos.SetActive(false);
+    }
+
+    public void Volver()
+    {
+        SceneManager.LoadScene("MapaCripta");
     }
 
     public void EscenaAventura()
