@@ -2,4 +2,8 @@ Movimiento AWSD
 Aim boton izq mouse
 Atacar Boton der mouse
 seleccion de armas con 1,2,3
+Correr con shift
+
+El juego trata de un guerrero paladin en busca de gloria y poder derrotar a los enemigos goblins
+del reino.
 
