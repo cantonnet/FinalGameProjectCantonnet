@@ -35215,7 +35215,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.26666668
-    functionName: footstep
+    functionName: walkrun
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -35229,7 +35229,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.6333333
-    functionName: footstep
+    functionName: walkrun
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
