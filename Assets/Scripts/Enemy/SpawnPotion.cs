@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class SpawnPotion : MonoBehaviour
 {
+    //Script para poder invocar e instanciar las pociones que el jugador puede tomar para recuperar stats
 
     [SerializeField] GameObject[] PotionObjects;
     private GameObject Potion;
     float tiempotrasladar = 5f;
     float tiempovivo = 0f;
     [SerializeField] public Transform SalidaSpawn;
-    // Start is called before the first frame update
+
     void Start()
     {
         tiempovivo += Time.deltaTime;
     }
 
-    private void Awake() 
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (tiempotrasladar <= tiempovivo)

@@ -7,16 +7,21 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(AudioSource))]
 public class ControlDeTerceraPersona : MonoBehaviour
 {
-    [SerializeField] HudManager HudManager;
-    [SerializeField] MenuPausa MenuPausa;
-    [SerializeField] AudioClip[] audioClip;
-    [SerializeField] SwitchCamera SwitchCamera;
-    //[SerializeField] Disparar Disparar;
+    [SerializeField]
+    HudManager HudManager;
+
+    [SerializeField]
+    MenuPausa MenuPausa;
+
+    [SerializeField]
+    AudioClip[] audioClip;
+
+    [SerializeField]
+    SwitchCamera SwitchCamera;
     private AudioSource audiosource;
 
-
     private Animator anim;
-    
+
     public static event Action OnDead;
 
     public float vida = 100f;
@@ -25,7 +30,9 @@ public class ControlDeTerceraPersona : MonoBehaviour
     public bool Defeat = false;
 
     public float speed = 2.6f;
-    float x, y, z;
+    float x,
+        y,
+        z;
     public float rotationspeed = 180f;
     public float lateralspeed = 2.5f;
     public bool canrun = false;
@@ -50,21 +57,25 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     public bool warrior = false;
     public bool Archer = false;
-    
+
     public GameObject Bala;
-    [SerializeField] public Transform Salidabala;
+
+    [SerializeField]
+    public Transform Salidabala;
 
     public GameObject PowerMagic;
-    [SerializeField] public Transform SalidaPowerMagic;
-    
+
+    [SerializeField]
+    public Transform SalidaPowerMagic;
+
     private void DisparoFlecha()
     {
-        if(municion >= 1)
+        if (municion >= 1)
         {
-           Instantiate(Bala, Salidabala.position, transform.rotation);
-        municion = municion - 1; 
-        Debug.Log("Municion = " + municion);
-        HudManager.Setammo(municion);
+            Instantiate(Bala, Salidabala.position, transform.rotation);
+            municion = municion - 1;
+            Debug.Log("Municion = " + municion);
+            HudManager.Setammo(municion);
         }
     }
 
@@ -100,12 +111,12 @@ public class ControlDeTerceraPersona : MonoBehaviour
         aiming();
         Muerte();
         HudManager.SetStanceImage(indexstance);
-        if(isaiming == false)
+        if (isaiming == false)
         {
             x = Input.GetAxis("Horizontal");
             y = Input.GetAxis("Vertical");
         }
-        if(isaiming == true)
+        if (isaiming == true)
         {
             x = 0f;
             y = 0f;
@@ -131,7 +142,10 @@ public class ControlDeTerceraPersona : MonoBehaviour
         anim.SetFloat("Municion", municion);
 
         bool isAtaking = Input.GetMouseButtonDown(0);
-         if (isAtaking) {anim.SetBool("Atacar", true);}
+        if (isAtaking)
+        {
+            anim.SetBool("Atacar", true);
+        }
         anim.SetBool("Atacar", isAtaking);
 
         MovePlayer();
@@ -149,7 +163,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
         }
     }
 
-        private void trasladaroff()
+    private void trasladaroff()
     {
         Traslado = false;
         CameraAim = false;
@@ -189,22 +203,29 @@ public class ControlDeTerceraPersona : MonoBehaviour
             if (OnAtaque == false)
             {
                 canrun = true;
-            if (((Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))||(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))))
-            {
-                lateralspeed = 3.5f;
-                speed = 3f;
-            }
-            else
-            {
-                lateralspeed = 4.5f;
-                speed = 5f;
-            }
+                if (
+                    (
+                        (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
+                        || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+                        || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+                        || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+                    )
+                )
+                {
+                    lateralspeed = 3.5f;
+                    speed = 3f;
+                }
+                else
+                {
+                    lateralspeed = 4.5f;
+                    speed = 5f;
+                }
             }
         }
     }
 
     void aiming()
-    {
+    { //acciones al momento de hacer aiming con el personaje
         if (Input.GetMouseButtonDown(1))
         {
             lateralspeed = 0f;
@@ -220,6 +241,7 @@ public class ControlDeTerceraPersona : MonoBehaviour
     }
 
     void drenarmana()
+    //aviso para animator
     {
         mana = mana - 20f;
         Debug.Log("Mana = " + mana);
@@ -228,8 +250,9 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     void stances()
     {
+        //Se generan los diferentes pasajes de estado segun las teclas 1, 2 y 3
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {   
+        {
             if (swordstance == true)
             {
                 indexstance = 0;
@@ -257,13 +280,15 @@ public class ControlDeTerceraPersona : MonoBehaviour
                 magestance = false;
                 SwitchCamera.Setbowstancevalue(bowstance);
             }
-            else{
+            else
+            {
                 indexstance = 2;
-            swordstance = false;
-            bowstance = true;
-            magestance = false;
-            HudManager.Setammo(municion);
-            SwitchCamera.Setbowstancevalue(bowstance);}
+                swordstance = false;
+                bowstance = true;
+                magestance = false;
+                HudManager.Setammo(municion);
+                SwitchCamera.Setbowstancevalue(bowstance);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -279,13 +304,14 @@ public class ControlDeTerceraPersona : MonoBehaviour
             {
                 indexstance = 3;
                 swordstance = false;
-            bowstance = false;
-            magestance = true;
-            SwitchCamera.Setbowstancevalue(bowstance);}
-        } 
+                bowstance = false;
+                magestance = true;
+                SwitchCamera.Setbowstancevalue(bowstance);
+            }
+        }
     }
 
-    //AUDIO
+    //---------------------AUDIO---------------------------------------------
 
     private void Awake()
     {
@@ -303,31 +329,33 @@ public class ControlDeTerceraPersona : MonoBehaviour
     }
 
     private AudioClip GetRandomClip()
-    {
-        int index = Random.Range(0, audioClip.Length  - 1);
+    { //aviso para tomar clips de audio de forma aleatoria
+        int index = Random.Range(0, audioClip.Length - 1);
         return audioClip[index];
     }
 
     private void footrun()
-    {
-        AudioClip clip = GetRandomClip();
-        audiosource.PlayOneShot(clip);
-    }
-    private void walkrun()
-    {
+    { //aviso para animator para generar audio en los pasos al caminar
         AudioClip clip = GetRandomClip();
         audiosource.PlayOneShot(clip);
     }
 
+    private void walkrun()
+    { //aviso para animator para generar audio en los pasos al correr
+        AudioClip clip = GetRandomClip();
+        audiosource.PlayOneShot(clip);
+    }
+
+    //------------------------------------------------------------------------Conjunto de aviso y eventos para animator para realizar diferentes animaciones----------------------------------------------------------------------
     private void ataque()
     {
-        if((swordstance == true) || (magestance == true))
+        if ((swordstance == true) || (magestance == true))
         {
             if (Input.GetMouseButtonDown(0))
             {
                 OnAtaque = true;
-                    lateralspeed = 0f;
-                    speed = 0f;
+                lateralspeed = 0f;
+                speed = 0f;
                 if (Combo1 == true)
                 {
                     Combo2 = true;
@@ -343,7 +371,6 @@ public class ControlDeTerceraPersona : MonoBehaviour
             }
         }
     }
-
 
     private void ataqueoff()
     {
@@ -397,36 +424,39 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     private void fixcombo3()
     {
-            fixCombo3 = false;
+        fixCombo3 = false;
     }
 
-        private void fixcombo3true()
+    private void fixcombo3true()
     {
-            fixCombo3 = true;
+        fixCombo3 = true;
     }
 
-        private void combo5on()
+    private void combo5on()
     {
-            Combo5 = true;
+        Combo5 = true;
     }
 
-            private void combo5off()
+    private void combo5off()
     {
-            Combo5 = true;
-            Combo6 = false;
+        Combo5 = true;
+        Combo6 = false;
     }
 
     private void DamageOn()
     {
-            DamageON = true;
+        DamageON = true;
     }
 
-        private void DamageOff()
+    private void DamageOff()
     {
-            DamageON = false;
+        DamageON = false;
     }
+
+    //-------------------------------------------------------------------------FIN Conjunto de aviso y eventos para animator para realizar diferentes animaciones----------------------------------------------------------------------
 
     public void Muerte()
+    // las acciones al morir el personaje, tambien genera un evento publico para otros scripts
     {
         if (vida <= 0)
         {
@@ -435,12 +465,13 @@ public class ControlDeTerceraPersona : MonoBehaviour
             speed = 0f;
             if (eventomoririnvocado == true)
             {
-                    ControlDeTerceraPersona.OnDead.Invoke();
-                    eventomoririnvocado = false;
+                ControlDeTerceraPersona.OnDead.Invoke();
+                eventomoririnvocado = false;
             }
         }
     }
 
+    //Aviso para animator
     public void AnimationMorir()
     {
         eventomoririnvocado = true;
@@ -448,8 +479,9 @@ public class ControlDeTerceraPersona : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Avisoy acciones que se generan al chocar con los diferentes colliders en cuestion
         if (other.gameObject.CompareTag("BalaEnemiga"))
-        {   
+        {
             DamageOn();
             Debug.Log("DanioDeBalaEnemiga");
             if ((isaiming == true) && (swordstance == true))
@@ -466,27 +498,36 @@ public class ControlDeTerceraPersona : MonoBehaviour
                 HudManager.SetMPBar(mana);
                 HudManager.SetHPBar(vida);
             }
-            if((isaiming == false))
+            if ((isaiming == false))
             {
                 vida = vida - 5f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetHPBar(vida);
             }
-            if((isaiming == false) && ((bowstance == true)||(swordstance == true)||(magestance == true)))
+            if (
+                (isaiming == false)
+                && ((bowstance == true) || (swordstance == true) || (magestance == true))
+            )
             {
                 vida = vida - 5f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetHPBar(vida);
             }
-            
-            if((isaiming == true) && ((bowstance == true)||(swordstance == false)||(magestance == false)))
+
+            if (
+                (isaiming == true)
+                && ((bowstance == true) || (swordstance == false) || (magestance == false))
+            )
             {
                 vida = vida - 5f;
                 Debug.Log("vida = " + vida);
                 HudManager.SetHPBar(vida);
             }
-            
-            if((isaiming == true) && ((bowstance == false)||(swordstance == false)||(magestance == false)))
+
+            if (
+                (isaiming == true)
+                && ((bowstance == false) || (swordstance == false) || (magestance == false))
+            )
             {
                 vida = vida - 5f;
                 Debug.Log("vida = " + vida);
@@ -494,34 +535,33 @@ public class ControlDeTerceraPersona : MonoBehaviour
             }
         }
         if (other.gameObject.CompareTag("Trampa"))
-            {   
-                DamageOn();
-                vida = 0;
-                Debug.Log("vida = " + vida);
-                HudManager.SetHPBar(vida);
-            
-            }
+        {
+            DamageOn();
+            vida = 0;
+            Debug.Log("vida = " + vida);
+            HudManager.SetHPBar(vida);
+        }
         if (other.gameObject.CompareTag("ManaPotion"))
-        { 
+        {
             mana = mana + 15f;
             Debug.Log("Mana Actual = " + mana);
             HudManager.SetMPBar(mana);
         }
         if (other.gameObject.CompareTag("HealtPotion"))
-        { 
+        {
             vida = vida + 20f;
             Debug.Log("vida Actual = " + vida);
             HudManager.SetHPBar(vida);
-            
         }
         if (other.gameObject.CompareTag("ArrowPotion"))
-        { 
+        {
             municion = municion + 10;
             Debug.Log("Municion Actual = " + municion);
         }
     }
 
     void fixhpmp()
+    // metodo para fix de vida y mana para que no decaigan de 0 ni sobrepasen el nivel 100
     {
         if (vida >= 101f)
         {

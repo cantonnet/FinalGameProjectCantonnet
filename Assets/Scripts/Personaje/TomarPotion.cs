@@ -5,22 +5,18 @@ using UnityEngine;
 public class TomarPotion : MonoBehaviour
 {
 
-    enum potiontype { Mana, Healt, Arrows};
-    [SerializeField] potiontype PotionType;
-    //[SerializeField] ControlDeTerceraPersona ControlDeTerceraPersona;
-    //public GameObject ObjetoBuscar;
-    //string tagObjeto = "Player";
-    //public float salud = 20f;
-    //public float magia = 20f;
-    //public int flechas = 5;
-    // Start is called before the first frame update
+    // dependiendo del tipo de item es el efecto que ocurre al tomar ya que cambia el tag del prefab
+    enum potiontype
+    {
+        Mana,
+        Healt,
+        Arrows
+    };
 
-    private void Start() {
-        //ObjetoBuscar = GameObject.FindWithTag(tagObjeto);
-        //ObjetoBuscar = FindObjectOfType<ControlDeTerceraPersona>().gameObject;
-        //Debug.Log("Objeto encontrado con nombre --> " + ObjetoBuscar.name);
-    }
-   public void swicher()
+    [SerializeField]
+    potiontype PotionType;
+
+    public void swicher()
     {
         switch (PotionType)
         {
@@ -39,10 +35,10 @@ public class TomarPotion : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        { 
+        {
             swicher();
             Debug.Log("PotionTake");
-            Debug.Log("Potion add "+PotionType);
+            Debug.Log("Potion add " + PotionType);
             destruir();
         }
     }

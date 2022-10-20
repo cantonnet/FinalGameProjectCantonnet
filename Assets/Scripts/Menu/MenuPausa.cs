@@ -15,17 +15,17 @@ public class MenuPausa : MonoBehaviour
     [SerializeField] private GameObject BotonSalir;
     [SerializeField] private GameObject BotonReiniciar;
 
-    // Start is called before the first frame update
+    // Al iniciar el menu pausa se encuentra desactivado
     void Start()
     {
         PausaPanel.SetActive(false);
     }
-
+    // llamado del evento desde el Control del personaje cuando este muere lo toma como GameOverActivePausa
     private void Awake() {
         ControlDeTerceraPersona.OnDead += GameOverAcivePausa;
     }
 
-    // Update is called once per frame
+    //Con Escape Activamos y desactivamos el menu de pausa segun el booleano de PauseAvtive
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -45,7 +45,7 @@ public class MenuPausa : MonoBehaviour
             }
         }
     }
-
+    // Reanuda vuelve al juego desactivando el menu de pausa
     public void Reanudar()
     {
         PauseActive = false;
@@ -55,20 +55,20 @@ public class MenuPausa : MonoBehaviour
         HudPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    //El boton de reinicio reinicia el mapa actual segun el SceneManager y getactiveescene
     public void Reiniciar()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    //Salir sale del mapa y va directo al menu principal
     public void Salir()
     {
         SceneManager.LoadScene("Menu");
         Cursor.lockState = CursorLockMode.None;
     }
-
+    //Cuando el personaje muere es avisado el evento desde el control de personaje y se activa GameOverActivePausa para desplegar el menu de pausa
     private void GameOverAcivePausa()
     {
         if (PauseActive == false)

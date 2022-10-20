@@ -5,29 +5,74 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class OnStancesSounds : MonoBehaviour
 {
-    [SerializeField] AudioClip magicClipON;
-    [SerializeField] AudioClip magicClipOff;
-    [SerializeField] AudioClip magicfireON;
-    [SerializeField] AudioClip magicshieldON;
-    [SerializeField] AudioClip magicshieldOFF;
-    [SerializeField] AudioClip SwordClipON;
-    [SerializeField] AudioClip SwordClipOff;
-    [SerializeField] AudioClip BowClipON;
-    [SerializeField] AudioClip BowClipOff;
-    [SerializeField] AudioClip TensarBow;
-    [SerializeField] AudioClip[] TiroArcoClip;
-    [SerializeField] AudioClip SonidoEquipar;
-    [SerializeField] AudioClip DestensarBow;
-    [SerializeField] AudioClip Woosh1;
-    [SerializeField] AudioClip Woosh2;
-    [SerializeField] AudioClip Woosh3;
-    [SerializeField] AudioClip armormove1;
-    [SerializeField] AudioClip EquiparEscudo;
-    [SerializeField] AudioClip DesequiparEscudo;
-    [SerializeField] AudioClip burstmagic;
-    [SerializeField] AudioClip premagic;
-    public bool burston = false;
+    /* 
+        Son eventos de aviso para el animator de los sonidos del personaje
     
+    */
+    [SerializeField]
+    AudioClip magicClipON;
+
+    [SerializeField]
+    AudioClip magicClipOff;
+
+    [SerializeField]
+    AudioClip magicfireON;
+
+    [SerializeField]
+    AudioClip magicshieldON;
+
+    [SerializeField]
+    AudioClip magicshieldOFF;
+
+    [SerializeField]
+    AudioClip SwordClipON;
+
+    [SerializeField]
+    AudioClip SwordClipOff;
+
+    [SerializeField]
+    AudioClip BowClipON;
+
+    [SerializeField]
+    AudioClip BowClipOff;
+
+    [SerializeField]
+    AudioClip TensarBow;
+
+    [SerializeField]
+    AudioClip[] TiroArcoClip;
+
+    [SerializeField]
+    AudioClip SonidoEquipar;
+
+    [SerializeField]
+    AudioClip DestensarBow;
+
+    [SerializeField]
+    AudioClip Woosh1;
+
+    [SerializeField]
+    AudioClip Woosh2;
+
+    [SerializeField]
+    AudioClip Woosh3;
+
+    [SerializeField]
+    AudioClip armormove1;
+
+    [SerializeField]
+    AudioClip EquiparEscudo;
+
+    [SerializeField]
+    AudioClip DesequiparEscudo;
+
+    [SerializeField]
+    AudioClip burstmagic;
+
+    [SerializeField]
+    AudioClip premagic;
+    public bool burston = false;
+
     private AudioSource MagicSource;
 
     private void Awake()
@@ -40,21 +85,19 @@ public class OnStancesSounds : MonoBehaviour
         burston = true;
     }
 
-        private void BurstOff()
+    private void BurstOff()
     {
         burston = false;
     }
 
-       private void burstsound()
+    private void burstsound()
     {
-        
         AudioClip smagic = burstmagic;
         MagicSource.PlayOneShot(smagic);
     }
 
-       private void prehechizo()
+    private void prehechizo()
     {
-        
         AudioClip smagic = premagic;
         MagicSource.PlayOneShot(smagic);
     }
@@ -71,7 +114,7 @@ public class OnStancesSounds : MonoBehaviour
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void shieldmageoff()
+    private void shieldmageoff()
     {
         AudioClip smagic = magicshieldOFF;
         MagicSource.PlayOneShot(smagic);
@@ -89,13 +132,12 @@ public class OnStancesSounds : MonoBehaviour
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void Shielddown()
+    private void Shielddown()
     {
         AudioClip smagic = DesequiparEscudo;
         MagicSource.PlayOneShot(smagic);
     }
 
-    
     private void OnTensar()
     {
         AudioClip smagic = DestensarBow;
@@ -108,7 +150,7 @@ public class OnStancesSounds : MonoBehaviour
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void Armormove1()
+    private void Armormove1()
     {
         AudioClip smagic = armormove1;
         MagicSource.PlayOneShot(smagic);
@@ -126,43 +168,43 @@ public class OnStancesSounds : MonoBehaviour
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void OnSword()
+    private void OnSword()
     {
         AudioClip smagic = SwordClipON;
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void OffSword()
+    private void OffSword()
     {
         AudioClip smagic = SwordClipOff;
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void OnBow()
+    private void OnBow()
     {
         AudioClip smagic = BowClipON;
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void OffBow()
+    private void OffBow()
     {
         AudioClip smagic = BowClipOff;
         MagicSource.PlayOneShot(smagic);
     }
 
-        private void woosh1()
+    private void woosh1()
     {
         AudioClip smagic = Woosh1;
         MagicSource.PlayOneShot(smagic);
     }
 
-            private void woosh2()
+    private void woosh2()
     {
         AudioClip smagic = Woosh2;
         MagicSource.PlayOneShot(smagic);
     }
 
-            private void woosh3()
+    private void woosh3()
     {
         AudioClip smagic = Woosh3;
         MagicSource.PlayOneShot(smagic);
@@ -170,14 +212,13 @@ public class OnStancesSounds : MonoBehaviour
 
     private void Shotbow()
     {
-            AudioClip smagic = GetRandomClip();
-            MagicSource.PlayOneShot(smagic);
+        AudioClip smagic = GetRandomClip();
+        MagicSource.PlayOneShot(smagic);
     }
-    
 
     private AudioClip GetRandomClip()
     {
-        int index = Random.Range(0, TiroArcoClip.Length  - 1);
+        int index = Random.Range(0, TiroArcoClip.Length - 1);
         return TiroArcoClip[index];
     }
 }

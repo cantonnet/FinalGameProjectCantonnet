@@ -21,7 +21,7 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject Sword;
     [SerializeField] private GameObject Bow;
     [SerializeField] private GameObject Magic;
-
+    // Singleton de cuando aparece el hud detecta si no se duplica el mismo en la instancia de juego, si lo hace el mismo es eliminado para ser el unico in game
     private void Awake() {
         if (instance == null)
         {
@@ -36,17 +36,12 @@ public class HudManager : MonoBehaviour
         }
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     public void SetSelectedText(string newText)
     {
         selectedtext.text = newText;
     }
-
+    //Cambia la imagen segun el estado del juegador que es avisado a travez de eventos que vienen del control de personaje
     public void SetStanceImage(int Index)
     {
         if (Index == 0)
@@ -81,30 +76,24 @@ public class HudManager : MonoBehaviour
             selectedtext.text = "Mago";
         }
     }
-
+    // la barra de vida se actualiza de acuerdo a como va avisando el control de personaje
     public static void SetHPBar (float newValue)
     {
         instance.hpbar.value = newValue;
     }
-
+    // la barra de mana se va actualizando deacuerdo al aviso de evento desde control de personaje
     public static void SetMPBar (float newValue)
     {
         instance.mpbar.value = newValue;
     }
-
+    //el valor de la cantidad de municion se va avisando a travez de eventos que vienen desde control de personaje
     public static void Setammo (int newValue)
     {
         instance.ammotext.text = newValue.ToString();
     }
-
+    // respues de prueba de evento que viene desde el control de personaje para debug
     private void GameOver()
     {
         Debug.Log("Respuesta desde Script Control3raP para HudManager");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

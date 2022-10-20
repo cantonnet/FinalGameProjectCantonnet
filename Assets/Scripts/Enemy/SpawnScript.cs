@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnScript : MonoBehaviour
-{
+{   //Este script es usado para el prefab de Spawner para generar enemigos aleatorios en el mapa
     public GameObject[] Enemigos;
     public float tiempodespawn = 25f;
     float time = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;

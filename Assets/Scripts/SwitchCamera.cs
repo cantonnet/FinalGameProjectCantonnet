@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwitchCamera : MonoBehaviour
-{
+{   
+    // Las 3 camaras que van a interactuar en el juego
     public GameObject pcam;
     public GameObject aimcam;
     public GameObject aimcambow;
     public bool isAiming;
     public bool stancebow;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
 
     void Update()
     {
@@ -32,7 +26,7 @@ public class SwitchCamera : MonoBehaviour
     {
         stancebow = newValue;
     }
-
+    // segun el estado en que se encuentre el personaje es la camara Aim que se activa
     public void setcamera()
     {
         if (isAiming == false)
@@ -55,7 +49,7 @@ public class SwitchCamera : MonoBehaviour
             }
         }
     }
-
+    // al usar el boton derecho del mouse se activa el booleano de Aim el cual da paso a cambio de camara
     public void buttonmouse()
     {
         

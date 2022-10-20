@@ -3,23 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trampa : MonoBehaviour
-{
+{   //Objetos que van a interactuar con el script
     [SerializeField] GameObject PinchosIzq;
     [SerializeField] GameObject PinchosDer;
     bool activo = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // movimiento que va a realizar estos objetos al colicionar con el jugador
     private void OnTriggerEnter(Collider other)
     {
         if (activo == false)

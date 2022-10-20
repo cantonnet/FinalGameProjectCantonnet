@@ -10,19 +10,8 @@ public class DestruccionEntorno : MonoBehaviour
     public GameObject Efecto;
     [SerializeField] public Transform SalidaEfecto;
     bool exploto = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /* este script se utiliza para destruir determinados objetos que requieren de la interaccion de la espada del 
+    jugador como la puerta a la base goblin y el desactivador de la trampa un poco mas adelante de la puerta*/
     private void OnTriggerEnter(Collider other)
     {
         if (exploto == false)
